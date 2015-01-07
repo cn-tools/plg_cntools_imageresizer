@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension version="3.0" type="plugin" group="content" method="upgrade">
+	<name>PLG_CNTOLS_IMAGERESIZER</name>
+	<author>CN-Tools</author>
+	<creationDate>December 2014</creationDate>
+	<authorEmail>cn-tools@gmx.at</authorEmail>
+	<authorUrl>https://github.com/cn-tools/</authorUrl>
+	<copyright>Copyright (c) 2014 Clemens Neubauer. All Rights Reserved</copyright>
+	<license>GNU/GPL</license>
+	<version>0.0.1</version>
+	<description>PLG_CNTOLS_IMAGERESIZER_DESC</description>
+	<files>
+		<filename plugin="plg_cntools_imageresizer">plg_cntools_imageresizer.php</filename>
+		<filename plugin="plg_cntools_imageresizer">clrn.ttf</filename>
+		<filename>index.html</filename>
+	</files>
+
+	<languages folder="language">
+		<language tag="en-GB">en-GB/en-GB.plg_content_plg_cntools_imageresizer.ini</language>
+		<language tag="en-GB">en-GB/en-GB.plg_content_plg_cntools_imageresizer.sys.ini</language>
+		<language tag="de-DE">de-DE/de-DE.plg_content_plg_cntools_imageresizer.ini</language>
+		<language tag="de-DE">de-DE/de-DE.plg_content_plg_cntools_imageresizer.sys.ini</language>
+	</languages>
+
+	<config>
+		<fields name="params">
+			<fieldset name="basic">
+					<field name="algoritm" type="list" default="0" label="PLG_CNTOOLS_IMAGERESIZER_RESIZE" description="PLG_CNTOOLS_IMAGERESIZER_RESIZE_HELP">
+						<option value="0">PLG_CNTOOLS_IMAGERESIZER_PERCENT_OPTION</option>
+						<option value="1">PLG_CNTOOLS_IMAGERESIZER_FIXED</option>
+					</field>
+
+					<field name="percent" type="text" default="" size="8" label="PLG_CNTOOLS_IMAGERESIZER_PERCENT" description="PLG_CNTOOLS_IMAGERESIZER_PERCENT_HELP" />
+					<field name="width" type="text" default="" size="8" label="PLG_CNTOOLS_IMAGERESIZER_WIDTH" description="PLG_CNTOOLS_IMAGERESIZER_WIDTH_HELP" />
+					<field name="height" type="text" default="" size="8" label="PLG_CNTOOLS_IMAGERESIZER_HEIGHT" description="PLG_CNTOOLS_IMAGERESIZER_HEIGHT_HELP" />
+					<field name="watermark" type="text" default="" size="50" label="PLG_CNTOOLS_IMAGERESIZER_WATERMARK_TEXT" description="PLG_CNTOOLS_IMAGERESIZER_WATERMARK_TEXT_HELP" />
+					<field name="watermarkFontSize" type="text" default="" size="8" label="PLG_CNTOOLS_IMAGERESIZER_WATERMARK_TEXT_SIZE" description="PLG_CNTOOLS_IMAGERESIZER_WATERMARK_TEXT_SIZE_HELP" />
+					<field name="watermarkFontColor" type="color" default="#000000" label="PLG_CNTOOLS_IMAGERESIZER_WATERMARK_TEXT_COLOR" description="PLG_CNTOOLS_IMAGERESIZER_WATERMARK_TEXT_COLOR_HELP" />
+					<field name="watermarkOpacity" type="text" default="" size="8" label="PLG_CNTOOLS_IMAGERESIZER_WATERMARK_OPACITY" description="PLG_CNTOOLS_IMAGERESIZER_WATERMARK_OPACITY_HELP" />
+
+					<field name="orientation" type="radio" default="1" label="PLG_CNTOOLS_IMAGERESIZER_ORIENTATION" description="PLG_CNTOOLS_IMAGERESIZER_ORIENTATION_HELP">
+						<option value="0">JNO</option>
+						<option value="1">JYES</option>
+					</field>
+					<field name="scaleup" type="radio" default="0" label="PLG_CNTOOLS_IMAGERESIZER_SCALEUP" description="PLG_CNTOOLS_IMAGERESIZER_SCALEUP_HELP">
+						<option value="0">JNO</option>
+						<option value="1">JYES</option>
+					</field>
+			</fieldset>
+		</fields>
+	</config>
+</extension>
