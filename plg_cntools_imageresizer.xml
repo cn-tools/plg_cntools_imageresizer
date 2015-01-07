@@ -22,6 +22,10 @@
 		<language tag="de-DE">de-DE/de-DE.plg_content_plg_cntools_imageresizer.sys.ini</language>
 	</languages>
 
+	<updateservers>
+		<server type="extension" priority="1" name="plg_cntools_imageresizer Updates">https://raw.github.com/cn-tools/plg_cntools_imageresizer/master/updateversion.xml</server>
+	</updateservers>
+
 	<config>
 		<fields name="params">
 			<fieldset name="basic">
