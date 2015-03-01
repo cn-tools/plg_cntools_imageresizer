@@ -7,7 +7,7 @@
 	<authorUrl>https://github.com/cn-tools/</authorUrl>
 	<copyright>Copyright (c) 2014 Clemens Neubauer. All Rights Reserved</copyright>
 	<license>GNU/GPL</license>
-	<version>0.0.1</version>
+	<version>0.0.2</version>
 	<description>PLG_CNTOLS_IMAGERESIZER_DESC</description>
 	<files>
 		<filename plugin="plg_cntools_imageresizer">plg_cntools_imageresizer.php</filename>
@@ -23,7 +23,7 @@
 	</languages>
 
 	<updateservers>
-		<server type="extension" priority="1" name="plg_cntools_imageresizer Updates">https://raw.github.com/cn-tools/plg_cntools_imageresizer/master/updateversion.xml</server>
+		<server type="extension" priority="1" name="plg_cntools_imageresizer Updates">https://raw.githubusercontent.com/cn-tools/plg_cntools_imageresizer/master/updateversion.xml</server>
 	</updateservers>
 
 	<config>
