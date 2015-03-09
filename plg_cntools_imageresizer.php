@@ -1,7 +1,6 @@
 <?php
 /*
  * @component plg_cntools_imageresizer
- * @version 0.0.1 
  * @website : https://github.com/cn-tools/plg_cntools_imageresizer
  * @copyright Copyright (c) 2014 Clemens Neubauer. All Rights Reserved.
  * @license : http://www.gnu.org/copyleft/gpl.html GNU/GPL
@@ -59,7 +58,6 @@ class plgContentPlg_CNTools_ImageResizer extends JPlugin
 		// get current image sizes
 		list($width, $height) = getimagesize($article->filepath);
 
-
 		switch ( $type ) {
 			case ('image/jpeg') : 
 				$source = imagecreatefromjpeg($article->filepath);
@@ -108,6 +106,7 @@ class plgContentPlg_CNTools_ImageResizer extends JPlugin
 
 		// get sizes for the new image
 		if ( $this->params->get('algoritm') ) {
+			$orientChanged = FALSE;
 			$newwidth 	= $this->params->get('width');
 			$newheight 	= $this->params->get('height');
 			
@@ -116,6 +115,7 @@ class plgContentPlg_CNTools_ImageResizer extends JPlugin
 				if (($width>=$height) AND ($newwidth>=$newwidth)) {
 					// do nothing - its all ok
 				} else {
+					$orientChanged = TRUE;
 					$lWorkValue = $newwidth;
 					$newwidth = $newheight;
 					$newheight = $lWorkValue;
@@ -132,7 +132,8 @@ class plgContentPlg_CNTools_ImageResizer extends JPlugin
 					unset($newheight);
 				}
 			}
-			
+
+			// let's calc new size of image
 			if ( !$newwidth && !$newheight ) { 
 				return;
 			} elseif (  !$newwidth ) {
@@ -141,6 +142,10 @@ class plgContentPlg_CNTools_ImageResizer extends JPlugin
 			} elseif ( !$newheight ) {
 				$initial = $width/$height;
 				$newheight = $newwidth/$initial;
+			} elseif ($orientChanged) {
+				$newwidth = ($width * $newheight) / $height;
+			} else {
+				$newheight = ($height * $newwidth) / $width;
 			}
 		} else {
 			$ratio	 	= $this->params->get('percent');
