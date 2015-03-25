@@ -7,11 +7,11 @@
 	<authorUrl>https://github.com/cn-tools/</authorUrl>
 	<copyright>Copyright (c) 2014 Clemens Neubauer. All Rights Reserved</copyright>
 	<license>GNU/GPL</license>
-	<version>0.0.4</version>
+	<version>0.0.3</version>
 	<description>PLG_CNTOLS_IMAGERESIZER_DESC</description>
 	<files>
 		<filename plugin="plg_cntools_imageresizer">plg_cntools_imageresizer.php</filename>
-		<folder plugin="plg_cntools_imageresizer">fonts</folder>
+		<filename plugin="plg_cntools_imageresizer">clrn.ttf</filename>
 		<filename>index.html</filename>
 	</files>
 
@@ -28,85 +28,28 @@
 
 	<config>
 		<fields name="params">
-			<fieldset name="basic" label="PLG_CNTOLS_IMAGERESIZER_BASIC_LABEL">
-				<field name="algoritm" type="list" default="0" label="PLG_CNTOOLS_IMAGERESIZER_RESIZE" description="PLG_CNTOOLS_IMAGERESIZER_RESIZE_HELP">
-					<option value="0">PLG_CNTOOLS_IMAGERESIZER_PERCENT_OPTION</option>
-					<option value="1">PLG_CNTOOLS_IMAGERESIZER_FIXED</option>
-					<option value="2">PLG_CNTOOLS_IMAGERESIZER_MAXSIDE_OPTION</option>
-				</field>
+			<fieldset name="basic">
+					<field name="algoritm" type="list" default="0" label="PLG_CNTOOLS_IMAGERESIZER_RESIZE" description="PLG_CNTOOLS_IMAGERESIZER_RESIZE_HELP">
+						<option value="0">PLG_CNTOOLS_IMAGERESIZER_PERCENT_OPTION</option>
+						<option value="1">PLG_CNTOOLS_IMAGERESIZER_FIXED</option>
+					</field>
 
-				<field name="percent" type="text" default="100" size="8" label="PLG_CNTOOLS_IMAGERESIZER_PERCENT" description="PLG_CNTOOLS_IMAGERESIZER_PERCENT_HELP" />
-				<field name="width" type="text" default="" size="8" label="PLG_CNTOOLS_IMAGERESIZER_WIDTH" description="PLG_CNTOOLS_IMAGERESIZER_WIDTH_HELP" />
-				<field name="height" type="text" default="" size="8" label="PLG_CNTOOLS_IMAGERESIZER_HEIGHT" description="PLG_CNTOOLS_IMAGERESIZER_HEIGHT_HELP" />
+					<field name="percent" type="text" default="" size="8" label="PLG_CNTOOLS_IMAGERESIZER_PERCENT" description="PLG_CNTOOLS_IMAGERESIZER_PERCENT_HELP" />
+					<field name="width" type="text" default="" size="8" label="PLG_CNTOOLS_IMAGERESIZER_WIDTH" description="PLG_CNTOOLS_IMAGERESIZER_WIDTH_HELP" />
+					<field name="height" type="text" default="" size="8" label="PLG_CNTOOLS_IMAGERESIZER_HEIGHT" description="PLG_CNTOOLS_IMAGERESIZER_HEIGHT_HELP" />
+					<field name="watermark" type="text" default="" size="50" label="PLG_CNTOOLS_IMAGERESIZER_WATERMARK_TEXT" description="PLG_CNTOOLS_IMAGERESIZER_WATERMARK_TEXT_HELP" />
+					<field name="watermarkFontSize" type="text" default="" size="8" label="PLG_CNTOOLS_IMAGERESIZER_WATERMARK_TEXT_SIZE" description="PLG_CNTOOLS_IMAGERESIZER_WATERMARK_TEXT_SIZE_HELP" />
+					<field name="watermarkFontColor" type="color" default="#000000" label="PLG_CNTOOLS_IMAGERESIZER_WATERMARK_TEXT_COLOR" description="PLG_CNTOOLS_IMAGERESIZER_WATERMARK_TEXT_COLOR_HELP" />
+					<field name="watermarkOpacity" type="text" default="" size="8" label="PLG_CNTOOLS_IMAGERESIZER_WATERMARK_OPACITY" description="PLG_CNTOOLS_IMAGERESIZER_WATERMARK_OPACITY_HELP" />
 
-				<field name="maxside" type="text" default="" size="8" label="PLG_CNTOOLS_IMAGERESIZER_MAXSIDE" description="PLG_CNTOOLS_IMAGERESIZER_MAXSIDE_HELP" />
-
-				<field name="scaleup" type="radio" default="0" class="btn-group btn-group-yesno" label="PLG_CNTOOLS_IMAGERESIZER_SCALEUP" description="PLG_CNTOOLS_IMAGERESIZER_SCALEUP_HELP">
-					<option value="0">JNO</option>
-					<option value="1">JYES</option>
-				</field>
-			</fieldset>
-			<fieldset name="watermark" label="PLG_CNTOOLS_IMAGERESIZER_WATERMARK">
-				<field name="watermarkflag" type="radio" default="0" class="btn-group btn-group-yesno" label="PLG_CNTOOLS_IMAGERESIZER_WATERMARK" description="PLG_CNTOOLS_IMAGERESIZER_WATERMARK_HELP">
-					<option value="0">JNO</option>
-					<option value="1">PLG_CNTOOLS_IMAGERESIZER_WATERMARK_IMAGE_OPTION</option>
-					<option value="2">PLG_CNTOOLS_IMAGERESIZER_WATERMARK_TEXT_OPTION</option>
-				</field>
-				
-				<field name="watermarkPosHor" type="radio" default="C" class="btn-group btn-group-yesno" label="PLG_CNTOOLS_IMAGERESIZER_WATERMARK_POSHOR" description="PLG_CNTOOLS_IMAGERESIZER_WATERMARK_POSHOR_HELP">
-					<option value="L">PLG_CNTOOLS_IMAGERESIZER_WATERMARK_POSHOR_LEFT</option>
-					<option value="C">PLG_CNTOOLS_IMAGERESIZER_WATERMARK_POSHOR_CENTER</option>
-					<option value="R">PLG_CNTOOLS_IMAGERESIZER_WATERMARK_POSHOR_RIGHT</option>
-				</field>
-				
-				<field name="watermarkPosVer" type="radio" default="C" class="btn-group btn-group-yesno" label="PLG_CNTOOLS_IMAGERESIZER_WATERMARK_POSVERT" description="PLG_CNTOOLS_IMAGERESIZER_WATERMARK_POSVERT_HELP">
-					<option value="T">PLG_CNTOOLS_IMAGERESIZER_WATERMARK_POSVERT_TOP</option>
-					<option value="C">PLG_CNTOOLS_IMAGERESIZER_WATERMARK_POSVERT_CENTER</option>
-					<option value="B">PLG_CNTOOLS_IMAGERESIZER_WATERMARK_POSVERT_BOTTOM</option>
-				</field>
-				<field name="watermarkOffsetHor" type="text" default="" size="8" label="PLG_CNTOOLS_IMAGERESIZER_WATERMARK_OFFSET_HOR" description="PLG_CNTOOLS_IMAGERESIZER_WATERMARK_OFFSET_HOR_HELP" />
-				<field name="watermarkOffsetVer" type="text" default="" size="8" label="PLG_CNTOOLS_IMAGERESIZER_WATERMARK_OFFSET_VER" description="PLG_CNTOOLS_IMAGERESIZER_WATERMARK_OFFSET_VER_HELP" />
-				
-				<field name="watermarkimage" type="media" default="" label="PLG_CNTOOLS_IMAGERESIZER_WATERMARK_IMAGE" description="PLG_CNTOOLS_IMAGERESIZER_WATERMARK_IMAGE_HELP" />
-
-				<field name="watermark" type="text" default="© {date}Y{/date} - {meta}sitename{/meta}" size="50" label="PLG_CNTOOLS_IMAGERESIZER_WATERMARK_TEXT" description="PLG_CNTOOLS_IMAGERESIZER_WATERMARK_TEXT_HELP" />
-				<field name="watermarkInfoNote" type="note" description="PLG_CNTOOLS_IMAGERESIZER_WATERMARK_INFONOTE_HELP" />
-				<field name="watermarkFontSize" type="text" default="" size="8" label="PLG_CNTOOLS_IMAGERESIZER_WATERMARK_TEXT_SIZE" description="PLG_CNTOOLS_IMAGERESIZER_WATERMARK_TEXT_SIZE_HELP" />
-				<field name="watermarkFontColor" type="color" default="#000000" label="PLG_CNTOOLS_IMAGERESIZER_WATERMARK_TEXT_COLOR" description="PLG_CNTOOLS_IMAGERESIZER_WATERMARK_TEXT_COLOR_HELP" />
-				<field name="watermarkOpacity" type="text" default="" size="8" label="PLG_CNTOOLS_IMAGERESIZER_WATERMARK_OPACITY" description="PLG_CNTOOLS_IMAGERESIZER_WATERMARK_OPACITY_HELP" />
-				<field name="watermarkFontType" type="radio" default="clrn" class="btn-group btn-group-yesno" label="PLG_CNTOOLS_IMAGERESIZER_WATERMARK_FONTTYPE" description="PLG_CNTOOLS_IMAGERESIZER_WATERMARK_FONTTYPE_HELP">
-					<option value="arial">PLG_CNTOOLS_IMAGERESIZER_WATERMARK_FONTTYPE_ARIAL</option>
-					<option value="clrn">PLG_CNTOOLS_IMAGERESIZER_WATERMARK_FONTTYPE_CLRN</option>
-					<option value="vera">PLG_CNTOOLS_IMAGERESIZER_WATERMARK_FONTTYPE_VERA</option>
-				</field>
-				<field name="watermarkFontURL" type="url" default="" size="50" label="PLG_CNTOOLS_IMAGERESIZER_WATERMARK_FONTURL" description="PLG_CNTOOLS_IMAGERESIZER_WATERMARK_FONTURL_HELP" />
-			</fieldset>
-			<fieldset name="filename" label="PLG_CNTOOLS_IMAGERESIZER_FILENAME">
-				<field name="filecrypt" type="list" default="0" label="PLG_CNTOOLS_IMAGERESIZER_NEWFILECRYPT" description="PLG_CNTOOLS_IMAGERESIZER_NEWFILECRYPT_HELP">
-					<option value="0">JNO</option>
-					<option value="1">PLG_CNTOOLS_IMAGERESIZER_NEWFILECRYPT_UNIQID</option>
-					<option value="2">PLG_CNTOOLS_IMAGERESIZER_NEWFILECRYPT_MD5</option>
-					<option value="3">PLG_CNTOOLS_IMAGERESIZER_NEWFILECRYPT_SHA1</option>
-					<option value="4">PLG_CNTOOLS_IMAGERESIZER_NEWFILECRYPT_ROT13</option>
-					<option value="5">PLG_CNTOOLS_IMAGERESIZER_NEWFILECRYPT_ONLYPREFIX</option>
-				</field>
-				
-				<field name="prefixtxtanf" type="text" default="" size="50" label="PLG_CNTOOLS_IMAGERESIZER_PREFIXTXTANF" description="PLG_CNTOOLS_IMAGERESIZER_PREFIXTXTANF_HELP" />
-				<field name="prefixtxtend" type="text" default="" size="50" label="PLG_CNTOOLS_IMAGERESIZER_PREFIXTXTEND" description="PLG_CNTOOLS_IMAGERESIZER_PREFIXTXTEND_HELP" />
-				
-				<field name="filenameUpLow" type="radio" default="2" class="btn-group btn-group-yesno" label="PLG_CNTOOLS_IMAGERESIZER_FILENAME_UPLOW" description="PLG_CNTOOLS_IMAGERESIZER_FILENAME_UPLOW_HELP">
-					<option value="0">JNO</option>
-					<option value="1">PLG_CNTOOLS_IMAGERESIZER_FILENAME_UPLOW_UPPER</option>
-					<option value="2">PLG_CNTOOLS_IMAGERESIZER_FILENAME_UPLOW_LOWER</option>
-				</field>
-			</fieldset>
-			<fieldset name="special" label="PLG_CNTOOLS_IMAGERESIZER_SPECIAL">
-				<field name="excludeFlag" type="list" default="0" label="PLG_CNTOOLS_IMAGERESIZER_EXCLUDEFLAG" description="PLG_CNTOOLS_IMAGERESIZER_EXCLUDEFLAG_HELP">
-					<option value="0">PLG_CNTOOLS_IMAGERESIZER_EXCLUDEFLAG_ALL</option>
-					<option value="1">PLG_CNTOOLS_IMAGERESIZER_EXCLUDEFLAG_EXCLUDE</option>
-					<option value="2">PLG_CNTOOLS_IMAGERESIZER_EXCLUDEFLAG_INCLUDE</option>
-				</field>
-				<field name="excludeFolder" type="textarea" default="" label="PLG_CNTOOLS_IMAGERESIZER_EXCLUDEFOLDER" description="PLG_CNTOOLS_IMAGERESIZER_EXCLUDEFOLDER_HELP" rows="10" cols="5"/>
+					<field name="orientation" type="radio" default="1" label="PLG_CNTOOLS_IMAGERESIZER_ORIENTATION" description="PLG_CNTOOLS_IMAGERESIZER_ORIENTATION_HELP">
+						<option value="0">JNO</option>
+						<option value="1">JYES</option>
+					</field>
+					<field name="scaleup" type="radio" default="0" label="PLG_CNTOOLS_IMAGERESIZER_SCALEUP" description="PLG_CNTOOLS_IMAGERESIZER_SCALEUP_HELP">
+						<option value="0">JNO</option>
+						<option value="1">JYES</option>
+					</field>
 			</fieldset>
 		</fields>
 	</config>
