@@ -52,9 +52,9 @@ class plgContentPlg_CNTools_ImageResizer extends JPlugin
 			$filenameUpLow = $this->params->get('filenameUpLow', '0');
 			if( $filenameUpLow != '0') {
 				if ($filenameUpLow == '1') {
-					$workFileName = strtoupper($workFileName);
+					$workFileName = mb_strtoupper($workFileName);
 				} else {
-					$workFileName = strtolower($workFileName);
+					$workFileName = mb_strtolower($workFileName);
 				}
 			}
 			
@@ -219,7 +219,7 @@ class plgContentPlg_CNTools_ImageResizer extends JPlugin
 				if( $this->params->get('watermarkflag', '0') == '1') {
 					/*------------------------- watermark image -------------------------*/
 					$watermarkFileName = JPATH_CONFIGURATION . DIRECTORY_SEPARATOR . $this->params->get('watermarkimage');
-					if (file_exists($watermarkFileName) and (strtolower(substr($watermarkFileName, -3)) == 'png')) {
+					if (file_exists($watermarkFileName) and (mb_strtolower(substr($watermarkFileName, -3)) == 'png')) {
 						$watermarkimage = imagecreatefrompng($watermarkFileName);
 					}
 				} elseif( $this->params->get('watermarkflag', '0') == '2') {
@@ -265,7 +265,7 @@ class plgContentPlg_CNTools_ImageResizer extends JPlugin
 					
 					// default values for left - top
 					$pos_x = 0 + $watermarkOffsetHor;
-					switch (strtoupper($this->params->get('watermarkPosHor'))) {
+					switch (mb_strtoupper($this->params->get('watermarkPosHor'))) {
 						case ('C' ) : //CENTER
 							$pos_x = ($width_ori - $width_wm) / 2;
 						break;
@@ -275,7 +275,7 @@ class plgContentPlg_CNTools_ImageResizer extends JPlugin
 					}
 
 					$pos_y = 0 + $watermarkOffsetVer;
-					switch (strtoupper($this->params->get('watermarkPosVer'))) {
+					switch (mb_strtoupper($this->params->get('watermarkPosVer'))) {
 						case ('C' ) : //CENTER
 							$pos_y = ($height_ori - $height_wm) / 2;
 						break;
@@ -351,10 +351,10 @@ class plgContentPlg_CNTools_ImageResizer extends JPlugin
 		
 		/*$article->filepath*/
 		if ($folderBase != '') {
-			$folderBase = strtolower($folderBase);
+			$folderBase = mb_strtolower($folderBase);
 			$excludeFlag = $this->params->get('excludeFlag', '0');
 			if (($excludeFlag != '0') and ($this->params->get('excludeFolder') != '')) {
-				$folders = explode(',', strtolower($this->params->get('excludeFolder')));
+				$folders = explode(',', mb_strtolower($this->params->get('excludeFolder')));
 				
 				if ($excludeFlag == '1') {
 					//All but ...
@@ -377,6 +377,7 @@ class plgContentPlg_CNTools_ImageResizer extends JPlugin
 		
 		return $folderAllowed;
 	}
+	
 	/*---------------------------- IsFileTypeOK ----------------------------*/
 	private function IsFileTypeOK(&$article) {
 		if (!$this->IsFolderOK($article->filepath)) {
@@ -403,7 +404,7 @@ class plgContentPlg_CNTools_ImageResizer extends JPlugin
 				$temp 	= explode('.',$article->filepath);
 				$key 	= count($temp)-1;
 				if(isset($temp[$key])) {
-					$this->_fileType	= strtolower($temp[$key]);
+					$this->_fileType = mb_strtolower($temp[$key]);
 				}
 				if ( $this->_fileType == 'jpg' ) {
 					$this->_fileType = 'jpeg';
