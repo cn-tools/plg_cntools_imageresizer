@@ -5,7 +5,7 @@
 		<description></description>
 		<element>plg_cntools_imageresizer</element>
 		<type>plugin</type>
-		<version>0.0.5</version>
+		<version>0.0.6</version>
 		<folder>content</folder>
 		<client_id>0</client_id>
 		<client>0</client>

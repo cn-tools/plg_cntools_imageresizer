@@ -354,12 +354,14 @@ class plgContentPlg_CNTools_ImageResizer extends JPlugin
 			$folderBase = mb_strtolower($folderBase);
 			$excludeFlag = $this->params->get('excludeFlag', '0');
 			if (($excludeFlag != '0') and ($this->params->get('excludeFolder') != '')) {
-				$folders = explode(',', mb_strtolower($this->params->get('excludeFolder')));
+				$folderBase = str_replace('\\', '/', $folderBase);
+				$workFolder = str_replace('\\', '/', $this->params->get('excludeFolder'));
+				$folders = explode(',', mb_strtolower($workFolder));
 				
 				if ($excludeFlag == '1') {
 					//All but ...
 					foreach ($folders as $folder) {
-						if (strpos ($folderBase, $folder)) {
+						if (strpos($folderBase, $folder)) {
 							$folderAllowed = false;
 						}
 					}
@@ -367,7 +369,7 @@ class plgContentPlg_CNTools_ImageResizer extends JPlugin
 					//None, except for...
 					$folderAllowed = false;
 					foreach ($folders as $folder) {
-						if (strpos ($folderBase, $folder)) {
+						if (strpos($folderBase, $folder)) {
 							$folderAllowed = true;
 						}
 					}
@@ -380,6 +382,10 @@ class plgContentPlg_CNTools_ImageResizer extends JPlugin
 	
 	/*---------------------------- IsFileTypeOK ----------------------------*/
 	private function IsFileTypeOK(&$article) {
+		if (!is_object($article)) {
+			return false;
+		}
+		
 		if (!$this->IsFolderOK($article->filepath)) {
 			return false;
 		}
@@ -414,7 +420,13 @@ class plgContentPlg_CNTools_ImageResizer extends JPlugin
 		}
 		
 		// if it's not a picture or is not supported, it's not our business :)
-		$imagesMIME = array('image/jpeg', 'image/png', 'image/gif');
+		if ($this->params->get('choosefiletype'))
+		{
+			$imagesMIME = (array)$this->params->get('filetypes');
+		} else {
+			$imagesMIME = array('image/jpeg', 'image/png', 'image/gif');
+		}
+		
 		if (in_array($this->_fileType, $imagesMIME)) {
 			return true;
 		} else {
