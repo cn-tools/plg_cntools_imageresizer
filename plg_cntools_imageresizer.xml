@@ -7,7 +7,7 @@
 	<authorUrl>https://github.com/cn-tools/</authorUrl>
 	<copyright>Copyright (c) 2014 Clemens Neubauer. All Rights Reserved</copyright>
 	<license>GNU/GPL</license>
-	<version>0.0.6</version>
+	<version>0.0.7</version>
 	<description>PLG_CNTOOLS_IMAGERESIZER_DESC</description>
 	<files>
 		<filename plugin="plg_cntools_imageresizer">plg_cntools_imageresizer.php</filename>
@@ -81,6 +81,12 @@
 					<option value="vera">PLG_CNTOOLS_IMAGERESIZER_WATERMARK_FONTTYPE_VERA</option>
 				</field>
 				<field name="watermarkFontURL" showon="watermarkflag:2" type="url" default="" size="50" label="PLG_CNTOOLS_IMAGERESIZER_WATERMARK_FONTURL" description="PLG_CNTOOLS_IMAGERESIZER_WATERMARK_FONTURL_HELP" />
+
+				<field name="noWatermarkTxt" showon="watermarkflag:1,2" type="text" default="" size="8" label="PLG_CNTOOLS_IMAGERESIZER_WATERMARK_NOWM" description="PLG_CNTOOLS_IMAGERESIZER_WATERMARK_NOWM_HELP" />
+				<field name="noWatermarkRemove" showon="watermarkflag:1,2" type="radio" default="1" class="btn-group btn-group-yesno" label="PLG_CNTOOLS_IMAGERESIZER_WATERMARK_NOWMREMOVE" description="PLG_CNTOOLS_IMAGERESIZER_WATERMARK_NOWMREMOVE_HELP">
+					<option value="0">JNO</option>
+					<option value="1">JYES</option>
+				</field>
 			</fieldset>
 			<fieldset name="filename" label="PLG_CNTOOLS_IMAGERESIZER_FILENAME">
 				<field name="filecrypt" type="list" default="0" label="PLG_CNTOOLS_IMAGERESIZER_NEWFILECRYPT" description="PLG_CNTOOLS_IMAGERESIZER_NEWFILECRYPT_HELP">
@@ -101,6 +107,8 @@
 					<option value="1">PLG_CNTOOLS_IMAGERESIZER_FILENAME_UPLOW_UPPER</option>
 					<option value="2">PLG_CNTOOLS_IMAGERESIZER_FILENAME_UPLOW_LOWER</option>
 				</field>
+				
+				<field name="noFilecryptTxt" showon="filecrypt:1,2,3,4,5" type="text" default="" size="8" label="PLG_CNTOOLS_IMAGERESIZER_FILENAME_NOCRYPTTXT" description="PLG_CNTOOLS_IMAGERESIZER_FILENAME_NOCRYPTTXT_HELP" />
 			</fieldset>
 			<fieldset name="special" label="PLG_CNTOOLS_IMAGERESIZER_SPECIAL">
 				<field name="excludeFlag" type="list" default="0" label="PLG_CNTOOLS_IMAGERESIZER_EXCLUDEFLAG" description="PLG_CNTOOLS_IMAGERESIZER_EXCLUDEFLAG_HELP">

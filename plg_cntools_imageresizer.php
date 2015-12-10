@@ -15,24 +15,39 @@ jimport('joomla.plugin.plugin');
 class plgContentPlg_CNTools_ImageResizer extends JPlugin
 {
 	protected $_fileType;
+	protected $_createWatermark;
 	
 	/*---------------------------- constructor ----------------------------*/
 	function __construct(&$subject, $config)
 	{
 		parent::__construct($subject, $config);
 		$this->_fileType = '';
+		$this->_createWatermark = FALSE;
 	}
 	
 	/*---------------------------- onContentBeforeSave ----------------------------*/
-	public function onContentBeforeSave($context, &$article, $isNew)
+	public function onContentBeforeSave($context, $article, $isNew)
 	{
 		if ($this->IsFileTypeOK($article)) {
 			$workFileName = pathinfo($article->filepath, PATHINFO_FILENAME); //without file ext
 			$workFileExt = pathinfo($article->name, PATHINFO_EXTENSION);
 			
+			if ($this->params->get('watermarkflag', '0') == '0') {
+				$this->_createWatermark = FALSE;
+			} elseif (($this->params->get('noWatermarkTxt', '') != '') and (stripos($workFileName, $this->params->get('noWatermarkTxt', '')) == TRUE)){
+				$this->_createWatermark = FALSE;
+			} else {
+				$this->_createWatermark = TRUE;
+			}
+			
+			// remove 'noWatermarkText' from filename
+			if ($this->params->get('noWatermarkRemove') && ($this->params->get('noWatermarkTxt', '') != '')){
+				$workFileName = str_ireplace($this->params->get('noWatermarkTxt', ''), '', $workFileName);
+			}
+			
 			// maybe encrypt file name
 			$fileCrypt = $this->params->get('filecrypt', '0'); 
-			if( $fileCrypt != '0') {
+			if( ($fileCrypt != '0') and ( ($this->params->get('noFilecryptTxt', '') == '') or (stripos($workFileName, $this->params->get('noFilecryptTxt', '')) != TRUE) ) ){
 				if ($fileCrypt == '2') {
 					$workFileName = md5($article->name);
 				} elseif ($fileCrypt == '3') {
@@ -58,7 +73,7 @@ class plgContentPlg_CNTools_ImageResizer extends JPlugin
 				}
 			}
 			
-			$article->filepath = str_replace($article->name, $workFileName, $article->filepath);
+			$article->filepath = str_ireplace($article->name, $workFileName, $article->filepath);
 		}
 		return true;
 	}
@@ -213,7 +228,7 @@ class plgContentPlg_CNTools_ImageResizer extends JPlugin
 			imagecopyresampled($new, $source, 0, 0, 0, 0, $newwidth, $newheight, $width, $height);
 			
 			// add watermark
-			if( ($this->params->get('watermarkflag', '0') != '0') ){
+			if ($this->_createWatermark) {
 				unset($watermarkimage);
 				
 				if( $this->params->get('watermarkflag', '0') == '1') {
@@ -386,6 +401,9 @@ class plgContentPlg_CNTools_ImageResizer extends JPlugin
 			return false;
 		}
 		
+		if (!property_exists($article, 'filepath')) {
+			return false;
+		}
 		if (!$this->IsFolderOK($article->filepath)) {
 			return false;
 		}
