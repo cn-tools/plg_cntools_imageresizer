@@ -70,7 +70,7 @@
 				<field name="watermarkOffsetHor" showon="watermarkflag:1,2" type="text" default="" size="8" label="PLG_CNTOOLS_IMAGERESIZER_WATERMARK_OFFSET_HOR" description="PLG_CNTOOLS_IMAGERESIZER_WATERMARK_OFFSET_HOR_HELP" />
 				<field name="watermarkOffsetVer" showon="watermarkflag:1,2" type="text" default="" size="8" label="PLG_CNTOOLS_IMAGERESIZER_WATERMARK_OFFSET_VER" description="PLG_CNTOOLS_IMAGERESIZER_WATERMARK_OFFSET_VER_HELP" />
 				
-				<field name="watermarkimage" showon="watermarkflag:1" type="media" default="" label="PLG_CNTOOLS_IMAGERESIZER_WATERMARK_IMAGE" description="PLG_CNTOOLS_IMAGERESIZER_WATERMARK_IMAGE_HELP" />
+				<field name="watermarkimage" showon="watermarkflag:1" type="media" preview="tooltip" default="" label="PLG_CNTOOLS_IMAGERESIZER_WATERMARK_IMAGE" description="PLG_CNTOOLS_IMAGERESIZER_WATERMARK_IMAGE_HELP" />
 
 				<field name="watermark" showon="watermarkflag:2" type="text" default="© {date}Y{/date} - {meta}sitename{/meta}" size="50" label="PLG_CNTOOLS_IMAGERESIZER_WATERMARK_TEXT" description="PLG_CNTOOLS_IMAGERESIZER_WATERMARK_TEXT_HELP" />
 				<field name="watermarkInfoNote" showon="watermarkflag:2" type="note" description="PLG_CNTOOLS_IMAGERESIZER_WATERMARK_INFONOTE_HELP" />
